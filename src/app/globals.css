@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary: #00bf63;
+    --primary-50: #f0fdf4;
+    --primary-100: #dcfce7;
+    --primary-200: #bbf7d0;
+    --primary-400: #4ade80;
+    --primary-500: #22c55e;
+    --primary-600: #16a34a;
+    --primary-700: #15803d;
+    --primary-800: #166534;
+    --primary-900: #14532d;
+    --secondnary: #f3f5f7;
+    --color-border: #ddd;
+    --color-text: #2c2c2c;
+    --color-text-secondnary: #999999;
+    --color-text-third: #00bf63;
+    --background-color-white: #ffffff;
+    --font-roboto-regular: "Roboto Regular", Roboro, Arial;
+    --font-roboto-medium: "Roboto Medium", Roboto, Arial;
+    --font-lexend-medium: "Lexend Medium", Roboto, Arial;
+    --bg-hover-primary: #dcfce7;
+
+    --width-layout: 1140px;
+    --width-support-sidebar: 285px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+/* emmbed font */
+@font-face {
+    font-family: "Roboto Regular";
+    src: url("/fonts/Roboto-Regular-v1.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Roboto Medium";
+    src: url("/fonts/Roboto-Medium-v1.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Lexend Medium";
+    src: url("/fonts/Lexend-Medium-v1.ttf") format("truetype"),
+        url("/fonts/pxiEyp8kv8JHgFVrJJfecg.woff2") format("woff2");
+    font-weight: 500;
+}
+
+body {
+    font-size: 14px;
+    line-height: "20px";
+    text-rendering: optimizespeed;
+    overflow-y: overlay;
+    scroll-behavior: smooth;
+}
+
+/* Scrollbar CSS */
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+    height: 1px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+button,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+input {
+    border-radius: 4px;
+    border: solid 1px #d1d5db;
+    outline: none;
+}
+
+input[type="checkbox"]:checked + label::before {
+    background-color: var(--primary);
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Custom tippy tooltip */
+body {
+    .tippy-box {
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.375rem;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content {
+        padding: 8px 9px;
+    }
+
+    .tippy-box[data-placement^="bottom"] > .tippy-arrow:before {
+        top: -8px;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+@layer components {
+    .transition-custom {
+        @apply transition-all duration-300 ease-in-out;
+    }
+}
+
+/* tùy chỉnh pagination */
+button.ant-pagination-item-link {
+    border: solid 1px rgba(36, 178, 114, 0.6) !important;
+    border-radius: 6px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+button.ant-pagination-item-link:hover {
+    background-color: var(--primary) !important;
+}
+
+.ant-pagination-item {
+    border: solid 1px rgba(36, 178, 114, 1) !important;
+}
+
+.ant-pagination-item.ant-pagination-item-active {
+    background-color: var(--primary);
+}
+
+.ant-pagination-item-active a {
+    color: white !important;
+}
+
+.ant-pagination-item:hover {
+    background-color: var(--primary) !important;
+}
+
+.ant-pagination-item:hover a {
+    color: white !important;
+}
+
+/* tùy chỉnh table */
+
+.ant-table-cell {
+    font-size: 14px !important; /* Thay đổi kích thước chữ tại đây */
+    padding: 16px !important;
+}
+
+/*điều chỉnh thanh cuộn của table */
+.ant-table-container .ant-table-body,
+.ant-table-container .ant-table-content {
+    scrollbar-width: thin;
+    scrollbar-color: #eaeaea transparent;
+    scrollbar-gutter: stable;
+}
+
+/*bỏ ngăn cách giữa các cell ở header */
+.ant-table-cell::before {
+    display: none;
+}
+
+tbody.ant-table-tbody > tr:nth-child(odd) {
+    background-color: var(--primary-50); /* Màu nền cho hàng lẻ */
+}
+
+th.ant-table-cell {
+    background-color: var(--primary) !important;
+}
+
+th.ant-table-cell.ant-table-cell-scrollbar {
+    box-shadow: 0 1px 0 1px var(--primary) !important;
+}
+
+.ant-spin-dot-item {
+    background-color: var(
+        --primary-500
+    ) !important; /* Thay đổi màu sắc của loading */
+}
+
+button.ant-switch.ant-switch-checked {
+    background-color: var(--primary) !important;
+}
+
+/* chỉnh switch */
+.ant-input-outlined {
+    max-height: 50px !important;
+}
+.ant-input-outlined:focus,
+.ant-input-outlined:hover {
+    border-color: var(--primary-500) !important;
+}
+
+/* chỉnh breadcrumb */
+
+.ant-breadcrumb-link a {
+    color: var(--primary) !important;
+    font-size: 16px !important;
+}
