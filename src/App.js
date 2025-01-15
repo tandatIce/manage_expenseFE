@@ -3,7 +3,6 @@ import { useCookies } from 'react-cookie';
 import { Fragment } from 'react';
 
 import { publicRoutes, privateRoutes, authenticationRoutes } from './routes';
-import RequiredLogin from './pages/OtherPage/RequiredLogin';
 import NotAccess from './pages/OtherPage/NotAccess';
 
 function App() {
@@ -36,7 +35,7 @@ function App() {
                     {privateRoutes.map((route, index) => {
                         const Layout = route.layout == null ? Fragment : route.layout;
 
-                        const Page = token ? route.element : RequiredLogin;
+                        const Page = route.element;
                         return (
                             <Route
                                 exact
