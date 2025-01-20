@@ -1,7 +1,7 @@
 import { DefautLayout } from '@/layout';
 import config from '@/config';
 
-import Home from '@/pages/OtherPage/User/Home';
+import Home from '@/pages/User/Home';
 import Login from '@/pages/Auth/Login';
 import Signup from '@/pages/Auth/Signup';
 

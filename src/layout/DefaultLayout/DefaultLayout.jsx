@@ -1,7 +1,16 @@
 import React from 'react';
+import cx from 'classnames';
+
+import Header from '../Header';
 
 const DefaultLayout = ({ children }) => {
-    return <div>{children}</div>;
+    return (
+        <div>
+            <Header />
+            {/* <HeaderMobile /> */}
+            <div className={cx('mx-8 pt-16')}> {children}</div>
+        </div>
+    );
 };
 
 export default DefaultLayout;

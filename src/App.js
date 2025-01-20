@@ -1,15 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import { Fragment } from 'react';
 
 import { publicRoutes, privateRoutes, authenticationRoutes } from './routes';
-import NotAccess from './pages/OtherPage/NotAccess';
 
 function App() {
-    const [cookies] = useCookies(['token']);
-
-    const token = cookies.token;
-
     return (
         <Router>
             <div className="App">
@@ -53,7 +47,7 @@ function App() {
                     {authenticationRoutes.map((route, index) => {
                         const Layout = route.layout == null ? Fragment : route.layout;
 
-                        const Page = token ? NotAccess : route.element;
+                        const Page = route.element;
                         return (
                             <Route
                                 exact
