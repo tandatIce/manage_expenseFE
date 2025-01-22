@@ -4,17 +4,37 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import cx from 'classnames';
 
-const CustomInput = ({ name, placeholder = '', required, label, disabled = false, className, inputClassName }) => {
+import CheckBox from './CheckBox';
+import DropDown from './DropDown';
+import { formatNumberWithDots } from '@/utils/common';
+
+const CustomInput = ({
+    name,
+    placeholder = '',
+    typeCustom,
+    required,
+    label,
+    disabled = false,
+    className,
+    inputClassName,
+    listOptions = [],
+    type = '',
+    top = false,
+}) => {
     const {
         register,
-        trigger,
         formState: { errors },
+        watch,
+        setValue,
     } = useFormContext();
 
     const error = errors[name]?.message;
 
     const handleValidate = () => {
-        trigger(name);
+        if (typeCustom === 'number') {
+            const newValue = formatNumberWithDots(watch(name));
+            setValue(name, newValue);
+        }
     };
 
     return (
@@ -27,21 +47,32 @@ const CustomInput = ({ name, placeholder = '', required, label, disabled = false
 
             <div className="mt-1">
                 <div className={cx('relative')}>
-                    <input
-                        autoComplete={name}
-                        id={name}
-                        placeholder={placeholder}
-                        required={required}
-                        disabled={disabled}
-                        {...register(name, { onChange: handleValidate })}
-                        className={cx(
-                            'border-primary-200 block w-full rounded-md border border-solid',
-                            'focus:border-primary-500 px-3 py-2 placeholder-gray-400 shadow-sm',
-                            'sm:text-sm',
-                            error && '!border-red-500',
-                            { [inputClassName]: inputClassName },
-                        )}
-                    />
+                    {typeCustom !== 'DropDown' && typeCustom !== 'CheckBox' && typeCustom !== 'textarea' && (
+                        <input
+                            autoComplete={name}
+                            id={name}
+                            type={type || 'text'}
+                            placeholder={placeholder}
+                            required={required}
+                            disabled={disabled}
+                            {...register(name, { onChange: handleValidate })}
+                            className={cx(
+                                'block w-full rounded-md border border-solid border-primary-200',
+                                'px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary-500',
+                                'sm:text-sm',
+                                error && '!border-red-500',
+                                { [inputClassName]: inputClassName },
+                            )}
+                        />
+                    )}
+
+                    {typeCustom === 'DropDown' && (
+                        <DropDown listOptions={listOptions} name={name} placeholder={placeholder} />
+                    )}
+
+                    {typeCustom === 'CheckBox' && (
+                        <CheckBox listOptions={listOptions} name={name} placeholder={placeholder} top={top} />
+                    )}
                 </div>
                 {error && <div className="mt-1 text-sm text-red-500">{error}</div>}
             </div>

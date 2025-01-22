@@ -1,15 +1,19 @@
 import cx from 'classnames';
+import { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 import Input from '@/components/Input';
+import LoadingCustom from '@/components/loadingCustom';
 import FormWarapper from '../FormWrapper';
 import { logInService } from '@/services/AuthService';
 import { notifyError, notifySuccess } from '@/utils/notification';
 import { routes } from '@/config';
 
 const Login = () => {
+    const [loading, setLoading] = useState(false);
+
     const methods = useForm({});
 
     const [, setCookies] = useCookies(['token', 'infoUser']);
@@ -24,7 +28,9 @@ const Login = () => {
             username: data?.username,
             password: data?.password,
         };
+        setLoading(true);
         const res = await logInService(bodyRequest);
+        setLoading(false);
         if (!res) {
             notifyError('Đăng nhập thất bại');
             return;
@@ -52,14 +58,25 @@ const Login = () => {
                         <button
                             type="submit"
                             className={cx(
-                                'bg-primary flex w-full justify-center rounded-md border border-transparent',
-                                'hover:bg-primary-500 px-4 py-2 text-sm font-medium text-white shadow-sm',
+                                'flex w-full justify-center rounded-md border border-transparent bg-primary',
+                                'px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-500',
                             )}
                         >
                             Đăng nhập
                         </button>
                     </div>
+                    <div className={cx('text-color-text mt-8 text-center')}>
+                        Bạn chưa có tài khoản?{' '}
+                        <Link
+                            to={routes.auth.SIGNUP}
+                            className={cx('font-medium text-primary', 'hover:text-primary-500')}
+                        >
+                            Đăng ký{' '}
+                        </Link>
+                        ngay
+                    </div>
                 </form>
+                {loading && <LoadingCustom />}
             </FormProvider>
         </FormWarapper>
     );

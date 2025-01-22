@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { useEffect, useState, useRef } from 'react';
 import { useCookies } from 'react-cookie';
-import { IoMdMenu } from 'react-icons/io';
+// import { IoMdMenu } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '@/components/Button';
@@ -11,15 +11,16 @@ import { routes } from '@/config';
 const Header = () => {
     const [isMenu, setIsMenu] = useState(false);
     const [isUser, setIsUser] = useState(false);
+    const [infoUser, setInfoUser] = useState({});
     const ref = useRef(null);
 
     const [cookies, , removeCookie] = useCookies(['token', 'infoUser']);
 
     const navigate = useNavigate();
 
-    const handleClickMenu = () => {
-        setIsMenu(!isMenu);
-    };
+    // const handleClickMenu = () => {
+    //     setIsMenu(!isMenu);
+    // };
 
     const navigateLogin = () => {
         navigate(routes.auth.LOGIN);
@@ -34,6 +35,7 @@ const Header = () => {
     useEffect(() => {
         if (cookies?.token) {
             setIsUser(true);
+            setInfoUser(cookies.infoUser);
         } else {
             setIsUser(false);
         }
@@ -63,9 +65,9 @@ const Header = () => {
                 'relative flex items-center justify-end',
             )}
         >
-            <button onClick={handleClickMenu} className={cx('xl:hidden', isMenu && 'invisible')}>
+            {/* <button onClick={handleClickMenu} className={cx('xl:hidden', isMenu && 'invisible')}>
                 <IoMdMenu size={20} />
-            </button>
+            </button> */}
             {/* Menu */}
             {/* <div
                 className={cx(
@@ -95,6 +97,7 @@ const Header = () => {
                     ))}
                 </ul>
             </div> */}
+            <div className={cx('mr-4 font-medium italic text-pink-400')}>{infoUser?.username}</div>
             {!isUser && <Button onClick={navigateLogin}>Đăng nhập</Button>}
             {isUser && <Button onClick={handleLogout}>Đăng xuất</Button>}
         </header>

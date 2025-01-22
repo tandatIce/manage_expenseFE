@@ -34,8 +34,9 @@ const Home = () => {
     }, []);
 
     return (
-        <div className={cx('mt-6')}>
+        <div className={cx('mt-6 max-sm:mx-4')}>
             <Button onClick={() => setIsModalAddGroup(true)}>Tạo nhóm</Button>
+            <div className={cx('my-2 text-[12px] text-red-500')}>*Nhấn vào tên nhóm để truy cập nhóm</div>
             <ul className={cx('mt-4 flex flex-wrap gap-4')}>
                 {groups.map((value, index) => (
                     <GroupCard group={value} key={index} handleGetGroupAll={handleGetGroupAll} />

@@ -10,6 +10,15 @@ export const getGroupAllService = async (token) => {
     return res;
 };
 
+export const getGroupDetailService = async (token, id) => {
+    const res = await get(`${api.group.GET_GROUP_DETAIL}/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return res;
+};
+
 export const addGroupService = async (bodyRequest, token) => {
     const body = {
         groupName: bodyRequest?.groupName,

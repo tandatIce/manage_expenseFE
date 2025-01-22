@@ -33,9 +33,11 @@ const GroupCard = ({ group, handleGetGroupAll }) => {
 
     return (
         <li className={cx('w-[300px] max-sm:w-full')}>
-            <div className={cx('rounded-lg bg-primary-200 p-4')}>
+            <div className={cx('min-h-[155px] rounded-lg bg-primary-200 p-4')}>
                 <div className={cx('mb-4 flex items-center justify-between')}>
-                    <Link className={cx('p-1 font-semibold')}>{group.name}</Link>
+                    <Link className={cx('p-1 text-xl font-semibold underline')} to={`/manage/${group.id}`}>
+                        {group.name}
+                    </Link>
                     <div className={cx('flex items-center justify-between gap-4')}>
                         <div className={cx('cursor-pointer text-red-500')} onClick={() => setIsModalDeleteGroup(true)}>
                             <FaTrash />
@@ -46,9 +48,15 @@ const GroupCard = ({ group, handleGetGroupAll }) => {
                     </div>
                 </div>
 
-                <div className={cx('flex gap-2')}>
+                <div className={cx('flex flex-wrap gap-2')}>
                     {group.partipants.map((value, index) => (
-                        <span key={index} className={cx('rounded bg-blue-200 px-2 py-1')}>
+                        <span
+                            key={index}
+                            className={cx(
+                                'rounded bg-blue-200 px-2 py-1',
+                                group?.created_by === value.id && 'bg-red-200 font-medium text-red-500',
+                            )}
+                        >
                             {value.username}
                         </span>
                     ))}

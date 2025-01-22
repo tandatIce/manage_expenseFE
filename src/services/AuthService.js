@@ -1,5 +1,5 @@
 import { api } from '@/config';
-import { post } from '@/utils/httpRequest';
+import { post, get } from '@/utils/httpRequest';
 
 export const logInService = async (bodyRequest) => {
     const body = {
@@ -18,5 +18,14 @@ export const signupService = async (bodyRequest) => {
         email: bodyRequest?.email,
     };
     const res = await post(`${api.auth.SIGN_UP}`, body);
+    return res;
+};
+
+export const searchUserService = async (token, keyword) => {
+    const res = await get(`${api.auth.SEARCH}?Keyword=${keyword}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
     return res;
 };

@@ -8,7 +8,7 @@ const DefaultLayout = ({ children }) => {
         <div>
             <Header />
             {/* <HeaderMobile /> */}
-            <div className={cx('mx-8 pt-16')}> {children}</div>
+            <div className={cx('mx-8 pt-16', 'max-sm:mx-0')}> {children}</div>
         </div>
     );
 };
