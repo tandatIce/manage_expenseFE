@@ -3,10 +3,11 @@ import cx from 'classnames';
 import { useEffect, useState, useRef } from 'react';
 import { useCookies } from 'react-cookie';
 // import { IoMdMenu } from 'react-icons/io';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '@/components/Button';
 import { routes } from '@/config';
+import logoImg from '@/assests/img/logo.jpg';
 
 const Header = () => {
     const [isMenu, setIsMenu] = useState(false);
@@ -62,9 +63,16 @@ const Header = () => {
         <header
             className={cx(
                 '!fixed left-0 z-20 h-[64px] w-full bg-white px-[15px] py-[17px] shadow-lg',
-                'relative flex items-center justify-end',
+                'relative flex items-center justify-between',
             )}
         >
+            <Link to={routes.HOME}>
+                <img
+                    src={logoImg}
+                    alt="logo"
+                    className={cx('h-[60px] w-[60px] cursor-pointer rounded-full object-cover')}
+                />
+            </Link>
             {/* <button onClick={handleClickMenu} className={cx('xl:hidden', isMenu && 'invisible')}>
                 <IoMdMenu size={20} />
             </button> */}
@@ -97,9 +105,11 @@ const Header = () => {
                     ))}
                 </ul>
             </div> */}
-            <div className={cx('mr-4 font-medium italic text-pink-400')}>{infoUser?.username}</div>
-            {!isUser && <Button onClick={navigateLogin}>Đăng nhập</Button>}
-            {isUser && <Button onClick={handleLogout}>Đăng xuất</Button>}
+            <div className={cx('flex items-center gap-4')}>
+                <div className={cx('mr-4 font-medium italic text-pink-400')}>{infoUser?.username}</div>
+                {!isUser && <Button onClick={navigateLogin}>Đăng nhập</Button>}
+                {isUser && <Button onClick={handleLogout}>Đăng xuất</Button>}
+            </div>
         </header>
     );
 };

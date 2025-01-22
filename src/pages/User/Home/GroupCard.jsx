@@ -15,7 +15,7 @@ const GroupCard = ({ group, handleGetGroupAll }) => {
     const [isModalDeleteGroup, setIsModalDeleteGroup] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const [cookies] = useCookies(['token']);
+    const [cookies] = useCookies(['token', 'infoUser']);
 
     const handleDeleteGroup = async () => {
         const token = cookies.token;
@@ -38,7 +38,12 @@ const GroupCard = ({ group, handleGetGroupAll }) => {
                     <Link className={cx('p-1 text-xl font-semibold underline')} to={`/manage/${group.id}`}>
                         {group.name}
                     </Link>
-                    <div className={cx('flex items-center justify-between gap-4')}>
+                    <div
+                        className={cx(
+                            'flex items-center justify-between gap-4',
+                            group?.created_by !== cookies.infoUser.id && 'hidden',
+                        )}
+                    >
                         <div className={cx('cursor-pointer text-red-500')} onClick={() => setIsModalDeleteGroup(true)}>
                             <FaTrash />
                         </div>

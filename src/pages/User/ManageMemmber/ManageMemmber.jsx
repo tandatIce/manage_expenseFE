@@ -18,7 +18,7 @@ const ManageMemmber = ({ group, handleGetGroupDetail }) => {
     const [isModalRemoveMember, setIsModalRemoveMember] = useState(false);
     const [memberSelected, setMemberSelected] = useState(undefined);
 
-    const [cookies] = useCookies(['token']);
+    const [cookies] = useCookies(['token', 'infoUser']);
 
     const handleSearch = async () => {
         const token = cookies.token;
@@ -77,7 +77,7 @@ const ManageMemmber = ({ group, handleGetGroupDetail }) => {
                         }}
                     >
                         <span>{value.username}</span>
-                        <span className={cx('text-red-500')}>
+                        <span className={cx('text-red-500', group?.created_by !== cookies.infoUser.id && 'hidden')}>
                             <FaTrash />
                         </span>
                     </div>
