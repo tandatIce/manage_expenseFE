@@ -88,11 +88,13 @@ const ManageMemmber = ({ group, handleGetGroupDetail }) => {
                 <h1 className={cx('mb-2 text-xl font-medium')}>Thêm thành viên</h1>
                 <div className={cx('flex gap-2')}>
                     <input
-                        className={cx('rounded border border-solid border-primary-300 px-4 py-2')}
+                        className={cx('rounded border border-solid border-primary-300 px-4 py-2', 'max-sm:w-[200px]')}
                         value={valueSearch}
                         onChange={(e) => setValueSearch(e.target.value)}
                     />
-                    <Button onClick={handleSearch}>Tìm kiếm</Button>
+                    <Button onClick={handleSearch} className={cx('flex-none')}>
+                        Tìm kiếm
+                    </Button>
                 </div>
 
                 <div className={cx('mt-2')}>

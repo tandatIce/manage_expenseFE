@@ -104,7 +104,7 @@ const ManageDebt = ({ group }) => {
             {/* Tổng kết nợ */}
             <div className={cx('mt-6')}>
                 <h1 className={cx('mb-2 text-xl font-medium')}>Tổng kết nợ</h1>
-                <div className={cx('mt-2', 'grid-cols-2 gap-x-4 gap-y-2 max-sm:grid')}>
+                <div className={cx('mt-2', 'flex flex-wrap gap-x-4 gap-y-2')}>
                     {debtSummary.map((value, index) => (
                         <div key={index} className={cx('flex items-end gap-1')}>
                             <span>

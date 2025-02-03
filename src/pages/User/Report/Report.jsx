@@ -99,7 +99,7 @@ const Report = ({ group, setIndexPart }) => {
                         className={cx('flex items-center bg-gray-300 px-3 py-2', 'border border-solid border-gray-300')}
                     >
                         <span className={cx('w-[45px] flex-none pr-1')}>Ngày</span>
-                        <span className={cx('w-[80px] flex-none pr-1')}>Giá</span>
+                        <span className={cx('w-[90px] flex-none pr-1')}>Giá</span>
                         <span className={cx('flex-1 pr-1')}>Mô tả</span>
                         <span className={cx('flex flex-none gap-4')}>Thao tác</span>
                     </div>
@@ -115,7 +115,7 @@ const Report = ({ group, setIndexPart }) => {
                             <span className={cx('w-[45px] flex-none pr-1')}>
                                 {new Date(value.created_at).getDate()}
                             </span>
-                            <span className={cx('w-[80px] flex-none pr-1 font-medium')}>
+                            <span className={cx('w-[90px] flex-none pr-1 font-medium')}>
                                 {formatNumberWithDots(value.amount)}đ
                             </span>
                             <span className={cx('flex-1 truncate pr-1')}>{value.description}</span>
