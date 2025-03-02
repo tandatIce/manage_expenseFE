@@ -26,6 +26,10 @@ function CheckBox({ listOptions = [], name, className, top = false, placeholder 
         setIsOpen(false);
     };
 
+    const handelSelectAll = () => {
+        const allValue = listOptions.map((value) => String(value?.code));
+        setValue(name, allValue);
+    };
     const handleClickOutside = (event) => {
         if (ref.current && !ref.current.contains(event.target)) {
             handleChange();
@@ -54,7 +58,7 @@ function CheckBox({ listOptions = [], name, className, top = false, placeholder 
     }, []);
 
     useEffect(() => {
-        //console.log('vision', watch('vision'));
+        //console.log(name, watch(name));
         if (listOptions.length > 0) {
             const seletedValues = watch(name);
             // console.log('seletedValues', seletedValues);
@@ -123,7 +127,10 @@ function CheckBox({ listOptions = [], name, className, top = false, placeholder 
                     </div>
                     {
                         <div className={cx('mb-2 flex justify-between px-1')}>
-                            <Button onClick={handleChange}>Áp dụng</Button>
+                            <div className={cx('flex gap-2')}>
+                                <Button onClick={handelSelectAll}>Tất cả</Button>
+                                <Button onClick={handleChange}>Áp dụng</Button>
+                            </div>
                             {valueInput !== placeholder && <Button onClick={handleCancel}>Bỏ chọn</Button>}
                         </div>
                     }
