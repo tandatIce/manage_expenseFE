@@ -109,7 +109,7 @@ const ManageExpense = ({ group, setIndexPart }) => {
                         <Input label="Số tiền" name="amount" typeCustom="number" />
                         <Input label="Mô tả" name="desc" />
                         <Input label="Ngày" name="date" type="date" />
-                        <Input label="Người trả" name="payer" typeCustom="DropDown" listOptions={listUserConvert} />
+                        <Input label="Người trả" name="payer" typeCustom="DropDown" listOptions={listUserConvert} top />
                         <Input
                             label="Người tham gia"
                             name="participants"
