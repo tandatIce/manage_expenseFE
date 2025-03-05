@@ -67,7 +67,7 @@ const CustomInput = ({
                     )}
 
                     {typeCustom === 'DropDown' && (
-                        <DropDown listOptions={listOptions} name={name} placeholder={placeholder} />
+                        <DropDown listOptions={listOptions} name={name} placeholder={placeholder} top={top} />
                     )}
 
                     {typeCustom === 'CheckBox' && (

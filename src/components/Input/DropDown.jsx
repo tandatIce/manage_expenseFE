@@ -8,7 +8,7 @@ import Button from '../Button';
 
 const cx = classNames;
 
-function DropDown({ listOptions = [], search = false, name, className, btnClassName, top, placeholder = '' }) {
+function DropDown({ listOptions = [], search = false, name, className, btnClassName, top = false, placeholder = '' }) {
     const [valueInput, setValueInput] = useState(placeholder);
     const [valueSearch, setValueSearch] = useState('');
     const [listOptionVisible, setListOptionVisible] = useState([]);
