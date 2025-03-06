@@ -29,3 +29,12 @@ export const getTransactionService = async (params, token) => {
     });
     return res;
 };
+
+export const getMyDebtService = async (token) => {
+    const res = await get(`${api.debt.GET_MY_DEBT}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return res;
+};

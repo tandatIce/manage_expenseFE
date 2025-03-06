@@ -24,6 +24,7 @@ const api = {
         PAY_DEBT: '/Debt',
         GET_SUMMARY_DEBT: '/Debt/debt-report',
         GET_TRANSACTION: '/Debt/getTransactions',
+        GET_MY_DEBT: '/Debt/myDebt',
     },
 };
 
